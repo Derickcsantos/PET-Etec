@@ -30,9 +30,9 @@ body{
 	color: #fff;
 	padding: 15px 20px;
 	display: flex;
-	flex-direction: row;
-	justify-content: space-between; /* Distribui os itens na horizontal */
-	align-items: center; /* Alinha os itens verticalmente no centro */
+	flex-direction: column; /* Alinha os itens em coluna */
+	justify-content: center; /* Alinha os itens no centro verticalmente */
+	align-items: center; /* Alinha os itens horizontalmente no centro */
 	z-index: 9999;
 	border-top: 2px solid #4CAF50; /* Adiciona uma borda verde no topo */
 	font-family: Arial, sans-serif;
@@ -43,8 +43,9 @@ body{
 /* Estilo para o texto do banner */
 .cookie-banner p {
 	font-size: 14px;
-	margin: 0; /* Remove margem para não ter espaço extra */
-	max-width: 80%; /* Evita que o texto ocupe toda a largura */
+	margin: 0; /* Remove a margem extra */
+	text-align: center; /* Alinha o texto ao centro */
+	max-width: 90%; /* Limita a largura do texto */
 }
 
 /* Estilos do botão de aceitar */
@@ -57,17 +58,14 @@ body{
 	font-size: 16px;
 	border-radius: 30px; /* Botão arredondado */
 	transition: background-color 0.3s ease, transform 0.3s ease; /* Transições suaves */
+	margin-top: 10px; /* Espaçamento entre o texto e o botão */
 }
 
 /* Efeito ao passar o mouse */
 .cookie-banner button:hover {
 	background-color: #45a049;
-	transform: translateY(-2px); /* Efeito de elevação no hover */
 }
 
-.cookie-banner button:active {
-	transform: translateY(0); /* Volta ao estado normal quando pressionado */
-}
 
 /* Adicionando um link para mais informações (caso seja necessário) */
 .cookie-banner a {
@@ -84,20 +82,17 @@ body{
 /* Para telas pequenas (móveis) */
 @media screen and (max-width: 600px) {
 	.cookie-banner {
-		flex-direction: column; /* Muda para layout vertical em telas pequenas */
-		align-items: center; /* Alinha os itens ao centro */
 		padding: 10px 15px;
 	}
 	.cookie-banner p {
-		text-align: center;
 		font-size: 16px;
-		margin-bottom: 10px; /* Dá um pouco de espaço abaixo do texto */
 	}
 	.cookie-banner button {
 		font-size: 14px;
 		padding: 10px 20px;
 	}
 }
+
 
   
 
