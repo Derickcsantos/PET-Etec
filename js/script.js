@@ -62,24 +62,67 @@ function getCookie(name) {
   return "";
 }
 
-// Verifica se o cookie de consentimento já foi definido
+// Função para verificar o consentimento de cookies
 function checkCookieConsent() {
   let consent = getCookie("cookieConsent");
+  let userName = localStorage.getItem("userName");  // Obtendo o nome do usuário do localStorage
   if (consent != "") {
     document.getElementById("cookie-banner").style.display = "none"; // Se o consentimento foi dado, não exibe o banner
+    if (userName != null) {
+      console.log(`Bem-vindo de volta, ${userName}!`); // Exibe o nome do usuário no console se ele já preencheu o nome
+    } else {
+      openNameModal(); // Se não houver nome, abre o modal para o usuário preencher
+    }
   } else {
     document.getElementById("cookie-banner").style.display = "block"; // Se não tiver consentimento, exibe o banner
   }
 }
 
+// Função para abrir o modal de nome
+function openNameModal() {
+  // Exibe o modal (supondo que você tenha um modal HTML)
+  let modal = document.getElementById("name-modal");
+  modal.style.display = "block";
+}
+
+// Função para fechar o modal
+function closeNameModal() {
+  let modal = document.getElementById("name-modal");
+  modal.style.display = "none";
+}
+
+// Função para salvar o nome do usuário no localStorage
+function saveUserName() {
+  let userName = document.getElementById("user-name").value;
+  if (userName) {
+    localStorage.setItem("userName", userName); // Salva o nome do usuário no localStorage
+    console.log(`Bem-vindo, ${userName}!`); // Exibe o nome do usuário no console
+    closeNameModal(); // Fecha o modal
+  } else {
+    alert("Por favor, insira seu nome.");
+  }
+}
+
 // Evento para aceitar os cookies
 document.getElementById("accept-cookies").onclick = function() {
-  setCookie("cookieConsent", "accepted", 365); // Define o cookie com validade de 365 dias
+  setCookie("cookieConsent", "accepted", 365); // Define o cookie de consentimento com validade de 365 dias
   document.getElementById("cookie-banner").style.display = "none"; // Fecha o banner após aceitar
+  openNameModal(); // Abre o modal para o usuário preencher o nome
+}
+
+// Evento para o envio do formulário de nome
+document.getElementById("save-name").onclick = function() {
+  saveUserName();
+}
+
+// Evento para fechar o modal ao clicar no botão "Fechar"
+document.getElementById("close-modal").onclick = function() {
+  closeNameModal();
 }
 
 // Chama a função para verificar o consentimento de cookies ao carregar a página
 checkCookieConsent();
+
 
 // Iniciar o carousel com o primeiro slide ativo
 updateCarousel();
